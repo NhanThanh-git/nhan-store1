@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhàn sờ to rẹt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style> 
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .menu {
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .menu a:hover {
+      text-decoration: underline;
+    }
+    .picture img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: auto;
+     
+    }
+   .sanpham {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      gap: 50px;
+    }
+    .sanpham div {
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      width: 250px;
+      transition: 0.2s;
+    }
+    .sanpham div:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .sanpham img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .sanpham a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+      
+    .menuphai{
+      display: flex;
+      gap: 20px;
+      margin-left: auto;
+     
+    }
+    .center {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 50px;
+      height: 70px;
+      align-items: center;
+    }
+    li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    
+    .danhmuc {
+      flex: 2;
+      display: flex;
+      
+    }
+    .danhmuc > li:hover .sub-danhmuc {
+      display: block;
+      visibility: visible;
+      
+    }
+    .danhmuc >li {
+      padding: 0 12px;
+      position: relative;
+    }
+    .sub-danhmuc{
+      position: absolute;
+      width: 150px;
+    border: 1px solid #ccc;
+    padding: 20px 0;
+    background-color: white;
+    visibility: hidden;
+    
+    transition: 0.3s;
+  }
+  .danhmuc a{
+    padding: 10px;
+    font-size: 15px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+  .sub-danhmuc ul{
+    
+    padding-left: 5px;
+    
+  }
+  .sub-danhmuc ul a {
+    display:block;
+    font-weight: normal;
+    font-size: 15px!important;
+    gap: 2px;
+    color:#ccc;
+  }
+  .sub-danhmuc ul a:hover {
+    color: black;
+    text-decoration: none;
+  }
+  .tenshop {
+    flex: 1;
+    font-weight: bold;   
+    font-size: 22px;
+  }
+  .other {
+    flex: 1;
+  }
+  .thanhngang {
+    width: 100%;
+    height: 35px;
+    background-color: #ece7e7;
+  }
+  .danhmuc a:hover{
+    text-decoration: underline;
+  }
+  .support {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  }
+  .support img {
+    height: 40px;
+   align-items: center;
+    
+    
+  }
+  .support1 {
+    float: left;
+    padding: 30px;
+    
+  }
+  .support2 {
+  float: left;
+  padding: 30px;
+  }
+  .support3 {
+  float: left;
+  padding: 30px;
+  }
+  h2 {
+    margin-left: 50px;
+    animation: hu__hu__ infinite 2s ease-in-out }
+    @keyframes hu__hu__ {
+    50% { transform: translateY(30px) }
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <div class="menuphai">
+    <a href=""><ion-icon name="bag-handle-outline"></ion-icon> Theo dõi đơn hàng</a>
+    <a href=""><ion-icon name="call"></ion-icon> Liên hệ</a>
+    <a href=""><ion-icon name="cart"></ion-icon> Giỏ hàng</a>
+    <a href=""><ion-icon name="person-outline"></ion-icon>Đăng nhập</a>
+    </div>
+</div>
+<div class="center">
+  <div class="tenshop">
+    <a href="index.html">NHÀN STORE</a>
+  </div>
+<div class="danhmuc">
+ <li><a href="tatca.html">SẢN PHẨM</a> 
+<div class="sub-danhmuc"> 
+<ul>
+  <li> <a href="Nam.html">GIÀY</a></li>
+  <li> <a href="ao.html">Áo</a></li>
+  <li> <a href="quan.html">Quần</a></li>
+  </ul>
+  </div>
+</li>
+ <li><a href="hot.html">HOT</a> </li>
+ <li><a href="treEm.html">TRẺ EM</a> </li>
+ <li><a href="thethao.html">THỂ THAO</a> </li>
+ <li><a href="sale.html">SALE</a> </li>
+  </div>
+  <div class="others">
+  <ul>
+    <li class="search-box">
+      <input type="text" placeholder="Tìm kiếm...">
+      <i class="fas fa-search"></i>
+    </li>
+  </ul>
+</div>
+
+  </div>
+</div>
+<div class="thanhngang">
+
+</div>
+<div class="picture">
+    <img src="D:\File học\Rèn Nghề Web\linh tinh\background.jpg" alt="" width="1500px" height="">
+</div>
+<div class="support">
+  <div class="support1">
+  <img src="D:\File học\Rèn Nghề Web\linh tinh\ship.png">
+  <div class="spc">
+  <h3>Vận chuyển toàn quốc</h3>
+  <p> Vận chuyển nhanh chóng</p>
+  </div>
+  </div>
+  <div class="support2">
+    <img src="D:\File học\Rèn Nghề Web\linh tinh\gift.png">
+    <div class="spc">
+    <h3>Ưu đãi hấp dẫn</h3>
+    <p>Nhiều ưu đãi khuyến mãi hot</p>
+  </div>
+  </div>
+  <div class="support3">
+    <img src="D:\File học\Rèn Nghề Web\linh tinh\medal.png">
+    <div class="spc">
+    <h3>Bảo đảm chất lượng</h3>
+    <p>Sản phẩm đã được kiểm định</p>
+  </div>
+
+</div>
+</div>
+<h2>SẢN PHẨM NỔI BẬT</h2>
+<br>
+<div class="sanpham">
+  <div class="sp">
+    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay1.jpg" alt="Giày 1"></a>
+    <a href="#">Vintas Vivu</a>
+   
+  </div>
+
+  <div class="sp">
+    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay2.jpg" alt="Giày 2"></a>
+    <a href="#">Vintas Vivu</a>
+    
+  </div>
+  <div class="sp">
+    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay3.jpg" alt="Giày 2"></a>
+    <a href="#">Vintas Vivu</a>
+    
+  </div>
+  <div class="sp">
+    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay4.jpg" alt="Giày 2"></a>
+    <a href="#">Vintas Vivu</a>
+    
+  </div>
+
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
