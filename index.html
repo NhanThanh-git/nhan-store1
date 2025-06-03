@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style> 
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+   body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
     .menu {
       background-color: #222;
       color: white;
@@ -69,7 +69,8 @@
       display: flex;
       justify-content: space-between;
       padding: 0 50px;
-      height: 70px;
+      height:100%;
+      max-height: 70px;
       align-items: center;
     }
     li {
@@ -175,6 +176,57 @@
     @keyframes hu__hu__ {
     50% { transform: translateY(30px) }
     }
+    .menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .menu-content {
+    display: none;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .menu-content.show {
+    display: flex;
+  }
+
+  .center {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .tenshop {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .others {
+    width: 100%;
+  }
+
+  .danhmuc {
+    width: 100%;
+  }
+
+  .danhmuc > li {
+    padding: 10px 0;
+  }
+}
+
   
   </style>
 </head>
@@ -191,32 +243,38 @@
   <div class="tenshop">
     <a href="index.html">NHÀN STORE</a>
   </div>
-<div class="danhmuc">
- <li><a href="tatca.html">SẢN PHẨM</a> 
-<div class="sub-danhmuc"> 
-<ul>
-  <li> <a href="Nam.html">GIÀY</a></li>
-  <li> <a href="ao.html">Áo</a></li>
-  <li> <a href="quan.html">Quần</a></li>
-  </ul>
-  </div>
-</li>
- <li><a href="hot.html">HOT</a> </li>
- <li><a href="treEm.html">TRẺ EM</a> </li>
- <li><a href="thethao.html">THỂ THAO</a> </li>
- <li><a href="sale.html">SALE</a> </li>
-  </div>
-  <div class="others">
-  <ul>
-    <li class="search-box">
-      <input type="text" placeholder="Tìm kiếm...">
-      <i class="fas fa-search"></i>
+
+  <!-- Nút menu thu gọn -->
+  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+
+  <!-- Menu ẩn/hiện -->
+  <div class="danhmuc menu-content">
+    <li><a href="tatca.html">SẢN PHẨM</a> 
+      <div class="sub-danhmuc"> 
+        <ul>
+          <li> <a href="Nam.html">GIÀY</a></li>
+          <li> <a href="ao.html">Áo</a></li>
+          <li> <a href="quan.html">Quần</a></li>
+        </ul>
+      </div>
     </li>
-  </ul>
+    <li><a href="hot.html">HOT</a></li>
+    <li><a href="treEm.html">TRẺ EM</a></li>
+    <li><a href="thethao.html">THỂ THAO</a></li>
+    <li><a href="sale.html">SALE</a></li>
+  </div>
+
+  <div class="others menu-content">
+    <ul>
+      <li class="search-box">
+        <input type="text" placeholder="Tìm kiếm...">
+        <i class="fas fa-search"></i>
+      </li>
+    </ul>
+  </div>
 </div>
 
-  </div>
-</div>
+
 <div class="thanhngang">
 
 </div>
@@ -275,5 +333,12 @@
 </div>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+  function toggleMenu() {
+    const contents = document.querySelectorAll('.menu-content');
+    contents.forEach(el => el.classList.toggle('show'));
+  }
+</script>
+
 </body>
 </html>
