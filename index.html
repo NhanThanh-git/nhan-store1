@@ -191,13 +191,17 @@
     margin-left: auto;
   }
 
-  .menu-content {
-    display: none;
-    flex-direction: column;
-    background-color: #f9f9f9;
-    padding: 10px;
-    width: 100%;
-  }
+ .menu-content {
+  display: none;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.95); /* nền đục nhẹ */
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* tạo khối nổi */
+  border-radius: 8px;
+  z-index: 999; /* giúp nổi lên trên ảnh nền */
+}
+
 
   .menu-content.show {
     display: flex;
@@ -233,7 +237,7 @@
 <body>
   <div class="menu">
     <div class="menuphai">
-    <a href=""><ion-icon name="bag-handle-outline"></ion-icon> Theo dõi đơn hàng</a>
+    <a href="#"><ion-icon name="bag-handle-outline"></ion-icon>Theo dõi đơn hàng</a>
     <a href=""><ion-icon name="call"></ion-icon> Liên hệ</a>
     <a href=""><ion-icon name="cart"></ion-icon> Giỏ hàng</a>
     <a href=""><ion-icon name="person-outline"></ion-icon>Đăng nhập</a>
@@ -250,14 +254,7 @@
   <!-- Menu ẩn/hiện -->
   <div class="danhmuc menu-content">
     <li><a href="tatca.html">SẢN PHẨM</a> 
-      <div class="sub-danhmuc"> 
-        <ul>
-          <li> <a href="Nam.html">GIÀY</a></li>
-          <li> <a href="ao.html">Áo</a></li>
-          <li> <a href="quan.html">Quần</a></li>
-        </ul>
-      </div>
-    </li>
+      
     <li><a href="hot.html">HOT</a></li>
     <li><a href="treEm.html">TRẺ EM</a></li>
     <li><a href="thethao.html">THỂ THAO</a></li>
@@ -279,25 +276,25 @@
 
 </div>
 <div class="picture">
-    <img src="D:\File học\Rèn Nghề Web\linh tinh\background.jpg" alt="" width="1500px" height="">
+    <img src="linh tinh/background.jpg" alt="" width="1500px" height="">
 </div>
 <div class="support">
   <div class="support1">
-  <img src="D:\File học\Rèn Nghề Web\linh tinh\ship.png">
+  <img src="linh tinh/ship.png">
   <div class="spc">
   <h3>Vận chuyển toàn quốc</h3>
   <p> Vận chuyển nhanh chóng</p>
   </div>
   </div>
   <div class="support2">
-    <img src="D:\File học\Rèn Nghề Web\linh tinh\gift.png">
+    <img src="linh tinh\gift.png">
     <div class="spc">
     <h3>Ưu đãi hấp dẫn</h3>
     <p>Nhiều ưu đãi khuyến mãi hot</p>
   </div>
   </div>
   <div class="support3">
-    <img src="D:\File học\Rèn Nghề Web\linh tinh\medal.png">
+    <img src="linh tinh\medal.png">
     <div class="spc">
     <h3>Bảo đảm chất lượng</h3>
     <p>Sản phẩm đã được kiểm định</p>
@@ -309,23 +306,23 @@
 <br>
 <div class="sanpham">
   <div class="sp">
-    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay1.jpg" alt="Giày 1"></a>
+    <a href="#"><img src="giay\giay1.jpg" alt="Giày 1"></a>
     <a href="#">Vintas Vivu</a>
    
   </div>
 
   <div class="sp">
-    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay2.jpg" alt="Giày 2"></a>
+    <a href="#"><img src="giay\giay2.jpg" alt="Giày 2"></a>
     <a href="#">Vintas Vivu</a>
     
   </div>
   <div class="sp">
-    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay3.jpg" alt="Giày 2"></a>
+    <a href="#"><img src="giay\giay3.jpg" alt="Giày 2"></a>
     <a href="#">Vintas Vivu</a>
     
   </div>
   <div class="sp">
-    <a href="#"><img src="D:\File học\Rèn Nghề Web\giay\giay4.jpg" alt="Giày 2"></a>
+    <a href="#"><img src="giay\giay4.jpg" alt="Giày 2"></a>
     <a href="#">Vintas Vivu</a>
     
   </div>
