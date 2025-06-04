@@ -53,12 +53,12 @@
     @media (max-width: 768px) {
   .sanpham {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    padding: 10px 15px;
+    padding: 5px 10px;
     gap: 12px;
   }
 
   .sanpham .sp {
-    padding: 10px;
+    padding: 5px;
   }
 
   .sanpham .btn-mua {
@@ -73,6 +73,10 @@
   .sanpham a.tensp {
     font-size: 14px;
   }
+  .sanpham .sp:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
 }
    .sanpham {
   display: grid;
@@ -82,6 +86,10 @@
 }
 
 .sanpham .sp {
+  width: 100%;
+  max-width: 300px;
+  flex: 1 1 calc(33.333% - 50px);
+  box-sizing: border-box;
   text-align: center;
   border: 1px solid #ccc;
   padding: 15px;
@@ -268,11 +276,38 @@
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .menu-toggle {
+@media (max-width: 1024px) {
+  .center {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+  }
+  
+  .sub-danhmuc {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none; /* Ngăn tương tác */
+  }
+
+  .danhmuc > li:hover .sub-danhmuc {
+    display: none !important;
+    visibility: hidden !important;
+  }
+ .menu-toggle {
     display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .btmenu {
     margin-left: auto;
   }
+ 
 
  .menu-content {
   display: none;
@@ -281,7 +316,7 @@
   padding: 10px;
   width: 100%;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* tạo khối nổi */
-  border-radius: 8px;
+  
   z-index: 999; /* giúp nổi lên trên ảnh nền */
 }
 
@@ -293,25 +328,23 @@
   .center {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 20px;
+    padding: 10px 0px;
   }
 
-  .tenshop {
+   .tenshop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     font-size: 20px;
-    margin-top: 20px;
+    z-index: 1;
   }
-
   .others {
     width: 100%;
   }
 
-  .danhmuc {
-    width: 100%;
-  }
-
-  .danhmuc > li {
-    padding: 10px 0;
-  }
+  
+  
 }
 
   
@@ -332,13 +365,21 @@
     <a href="index.html">NHÀN STORE</a>
   </div>
 
+  <div class="btmenu">
   <!-- Nút menu thu gọn -->
   <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-
+</div>
   <!-- Menu ẩn/hiện -->
   <div class="danhmuc menu-content">
     <li><a href="tatca.html">SẢN PHẨM</a> 
-      
+      <div class="sub-danhmuc"> 
+<ul>
+  <li> <a href="Nam.html">GIÀY</a></li>
+  <li> <a href="ao.html">Áo</a></li>
+  <li> <a href="quan.html">Quần</a></li>
+  </ul>
+  </div>
+</li>
     <li><a href="hot.html">HOT</a></li>
     <li><a href="treEm.html">TRẺ EM</a></li>
     <li><a href="thethao.html">THỂ THAO</a></li>
