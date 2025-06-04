@@ -8,6 +8,7 @@
 
     <style> 
    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+   
    @media (max-width: 768px) {
   .menu a .text {
     display: none;
@@ -50,34 +51,7 @@
       margin: auto;
      
     }
-    @media (max-width: 768px) {
-  .sanpham {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    padding: 5px 10px;
-    gap: 12px;
-  }
-
-  .sanpham .sp {
-    padding: 5px;
-  }
-
-  .sanpham .btn-mua {
-    padding: 8px 0;
-    font-size: 14px;
-  }
-
-  .sanpham .gia {
-    font-size: 14px;
-  }
-
-  .sanpham a.tensp {
-    font-size: 14px;
-  }
-  .sanpham .sp:hover {
-  transform: none !important;
-  box-shadow: none !important;
-}
-}
+  
    .sanpham {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -341,10 +315,40 @@
   }
   .others {
     width: 100%;
+  }  
+}
+ @media (max-width: 768px) {
+   .sanpham {
+    display: flex;           /* chuyển thành flex để nằm ngang */
+    overflow-x: auto;        /* cho phép scroll ngang */
+    gap: 12px;
+    padding: 10px;
+    -webkit-overflow-scrolling: touch; /* cuộn mượt trên iOS */
   }
 
-  
-  
+  .sanpham .sp {
+    flex: 0 0 auto;          /* không co dãn, giữ nguyên kích thước */
+    width: 140px;            /* đặt rộng cố định cho mỗi sản phẩm */
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .sanpham .btn-mua {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .sanpham .gia {
+    font-size: 14px;
+  }
+
+  .sanpham a.tensp {
+    font-size: 14px;
+  }
+  .sanpham .sp:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
 }
 
   
@@ -424,7 +428,6 @@
     <h3>Bảo đảm chất lượng</h3>
     <p>Sản phẩm đã được kiểm định</p>
   </div>
-
 </div>
 </div>
 <h2>SẢN PHẨM NỔI BẬT</h2>
@@ -451,6 +454,18 @@
   </div>
     <div class="sp">
     <a href="#"><img src="giay\giay4.jpg" alt="Giày 1"></a>
+    <a href="#" class="tensp">Vintas Vivu</a>
+    <p class="gia">đ299,000</p>
+    <button class="btn-mua">Mua ngay</button>
+  </div>
+   <div class="sp">
+    <a href="#"><img src="giay\giay5.jpg" alt="Giày 1"></a>
+    <a href="#" class="tensp">Vintas Vivu</a>
+    <p class="gia">đ299,000</p>
+    <button class="btn-mua">Mua ngay</button>
+  </div>
+   <div class="sp">
+    <a href="#"><img src="giay\giay6.jpg" alt="Giày 1"></a>
     <a href="#" class="tensp">Vintas Vivu</a>
     <p class="gia">đ299,000</p>
     <button class="btn-mua">Mua ngay</button>
