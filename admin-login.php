@@ -1,14 +1,77 @@
+<?php
+session_start();
+
+// Cấu hình cơ sở dữ liệu
+$host = 'localhost';
+$db = 'shopdb';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+// Kết nối đến cơ sở dữ liệu
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    die('Không thể kết nối cơ sở dữ liệu: ' . $e->getMessage());
+}
+
+$errors = [];
+$username = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($username === '' || $password === '') {
+        $errors[] = 'Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.';
+    } else {
+        // Tìm kiếm người dùng trong cơ sở dữ liệu
+        $stmt = $pdo->prepare('SELECT id, username, password, role FROM users WHERE username = ?');
+        $stmt->execute([$username]);
+        $user = $stmt->fetch();
+
+        if ($user && $password === $user['password']) {
+
+            // Đăng nhập hợp lệ
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'username' => $user['username'],
+                'role' => $user['role']
+            ];
+            // Chuyển hướng dựa trên vai trò
+            if ($user['role'] === 'admin') {
+                header('Location: index.html');
+                exit;
+            } else {
+                header('Location: customer_dashboard.php');
+                exit;
+            }
+        } else {
+            $errors[] = 'Tên đăng nhập hoặc mật khẩu không đúng.';
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cửa hàng trực tuyến</title>
+  <title>Cửa hàng trực tuyến - Đăng nhập</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    body {
+    
+   body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -58,89 +121,7 @@
       text-decoration: underline;
     }
 
-    .picture img {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: auto;
-
-    }
-
-    .sanpham {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 20px;
-      padding: 20px 40px;
-    }
-
-    .sanpham .sp {
-      width: 100%;
-      max-width: 300px;
-      flex: 1 1 calc(33.333% - 50px);
-      box-sizing: border-box;
-      text-align: center;
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      background-color: #fff;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
-
-    .sanpham a.tensp {
-      display: block;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .sanpham .gia {
-      color: #a4b5c9;
-      font-weight: bold;
-      margin-bottom: 12px;
-      font-size: 15px;
-    }
-
-    .sanpham .btn-mua {
-      background-color: #a4b5c9;
-      border: none;
-      color: white;
-      padding: 10px 0;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .sanpham .btn-mua:hover {
-      background-color: #b7154a;
-    }
-
-    .sanpham .sp:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .sanpham img {
-      width: 100%;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .sanpham a {
-      display: block;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-
+   
     .menuphai {
       display: flex;
       gap: 20px;
@@ -265,45 +246,7 @@
       background-color: #ece7e7;
     }
 
-    .support {
-      display: flex;
-      flex-wrap: wrap;
-      /* Cho phép tự động xuống hàng khi không đủ chỗ */
-      justify-content: space-around;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-      gap: 20px;
-      /* khoảng cách giữa các ô */
-    }
-
-    .support1,
-    .support2,
-    .support3 {
-      flex: 1 1 250px;
-      /* Chiếm đều, co giãn tối thiểu 250px */
-      padding: 20px;
-      box-sizing: border-box;
-      /* tùy chọn thêm màu nền hoặc viền */
-      border-radius: 10px;
-    }
-
-    .support img {
-      height: 40px;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin-left: 50px;
-      animation: hu__hu__ infinite 2s ease-in-out
-    }
-
-    @keyframes hu__hu__ {
-      50% {
-        transform: translateY(30px)
-      }
-    }
-
+    
     .menu-toggle {
       display: none;
       font-size: 24px;
@@ -393,46 +336,6 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .sanpham {
-        display: flex;
-        /* chuyển thành flex để nằm ngang */
-        overflow-x: auto;
-        /* cho phép scroll ngang */
-        gap: 12px;
-        padding: 10px;
-        -webkit-overflow-scrolling: touch;
-        /* cuộn mượt trên iOS */
-      }
-
-      .sanpham .sp {
-        flex: 0 0 auto;
-        /* không co dãn, giữ nguyên kích thước */
-        width: 140px;
-        /* đặt rộng cố định cho mỗi sản phẩm */
-        padding: 5px;
-        box-sizing: border-box;
-      }
-
-      .sanpham .btn-mua {
-        padding: 8px 0;
-        font-size: 14px;
-      }
-
-      .sanpham .gia {
-        font-size: 14px;
-      }
-
-      .sanpham a.tensp {
-        font-size: 14px;
-      }
-
-      .sanpham .sp:hover {
-        transform: none !important;
-        box-shadow: none !important;
-      }
-    }
-
     .ttlh {
       width: 100%;
       height: 200px;
@@ -503,16 +406,125 @@
   }
 }
 
+.content {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      height: 500px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+}
+     h1 {
+      font-size: 36px;
+      text-align: center;
+    }
+    .option-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      padding: 100px;
+    }
+    p {
+        text-align: center;
+    }
+    
+    /* Responsive */
+    @media (max-width: 480px) {
+      main {
+        margin: 40px 12px;
+      }
+      h1 {
+        font-size: 36px;
+      }
+      button.option-btn {
+        font-size: 18px;
+        padding: 16px;
+      }
+    }
+    .error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 0.5rem;
+ 
+  margin-bottom: 20px; /* Thay đổi margin-bottom để tạo khoảng cách */
+  font-weight: 600;
+ 
+}
+.dangnhap (
+ padding:100px;
+  )
+
+
+/* Bọc toàn bộ form */
+form {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Label */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input */
+form input[type="text"],
+form input[type="password"] {
+  width: 95%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  border-color: #b7154a;
+  outline: none;
+}
+
+/* Nút submit */
+form button[type="submit"] {
+  width: 70%;
+  padding: 12px;
+  display: block;
+  margin: 20px auto 0 auto;
+  background-color:#b7154a;
+  border: none;
+  color: white;
+  font-size: 16px;  
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background: color #a40e3a;;
+}
+
   </style>
 </head>
 
 <body>
-  <div class="menu">
-    <div class="menuphai">
-      <a href="#"><ion-icon name="bag-handle-outline"></ion-icon> <span class="text">Theo dõi</span></a>
+    <div class="menu">
+        <div class="menuphai">
+            <a href="#"><ion-icon name="bag-handle-outline"></ion-icon> <span class="text">Theo dõi</span></a>
       <a href="#" class="hide-on-mobile"><ion-icon name="call"></ion-icon> <span class="text">Liên hệ</span></a>
       <a href="giohang.html"><ion-icon name="cart-outline"></ion-icon> <span class="text">Giỏ hàng</span></a>
-      <a href="login.html"><ion-icon name="person-outline"></ion-icon> <span class="text">Đăng nhập</span></a>
+      <a href="#"><ion-icon name="person-outline"></ion-icon> <span class="text">Đăng nhập</span></a>
     </div>
   </div>
 
@@ -520,7 +532,6 @@
     <div class="tenshop">
       <a href="index.html">NHÀN STORE</a>
     </div>
-
     <div class="btmenu">
       <!-- Nút menu thu gọn -->
       <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
@@ -555,73 +566,30 @@
   <div class="thanhngang">
 
   </div>
-  <div class="picture">
-    <img src="linh tinh/background.jpg" alt="" width="1500px" height="">
-  </div>
-  <div class="support">
-    <div class="support1">
-      <img src="linh tinh/ship.png">
-      <div class="spc">
-        <h3>Vận chuyển toàn quốc</h3>
-        <p> Vận chuyển nhanh chóng</p>
-      </div>
-    </div>
-    <div class="support2">
-      <img src="linh tinh\gift.png">
-      <div class="spc">
-        <h3>Ưu đãi hấp dẫn</h3>
-        <p>Nhiều ưu đãi khuyến mãi hot</p>
-      </div>
-    </div>
-    <div class="support3">
-      <img src="linh tinh\medal.png">
-      <div class="spc">
-        <h3>Bảo đảm chất lượng</h3>
-        <p>Sản phẩm đã được kiểm định</p>
-      </div>
-    </div>
-  </div>
-  <h2>SẢN PHẨM NỔI BẬT</h2>
-  <br>
-  <div class="sanpham">
-    <div class="sp">
-      <a href="#"><img src="giay\giay1.jpg" alt="Giày 1"></a>
-      <a href="" class="tensp">Vintas Vivu</a>
-      <p class="gia">đ299,000</p>
-      <button class="btn-mua">Mua ngay</button>
-    </div>
+  
 
-    <div class="sp">
-      <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
-      <a href="#" class="tensp">Vintas Vivu</a>
-      <p class="gia">đ299,000</p>
-      <button class="btn-mua">Mua ngay</button>
-    </div>
-    <div class="sp">
-      <a href="#"><img src="quan\quan3.jpg" alt="Giày 1"></a>
-      <a href="#" class="tensp">Vintas Vivu</a>
-      <p class="gia">đ299,000</p>
-      <button class="btn-mua">Mua ngay</button>
-    </div>
-    <div class="sp">
-      <a href="#"><img src="giay\giay4.jpg" alt="Giày 1"></a>
-      <a href="#" class="tensp">Vintas Vivu</a>
-      <p class="gia">đ299,000</p>
-      <button class="btn-mua">Mua ngay</button>
-    </div>
-    <div class="sp">
-      <a href="#"><img src="giay\giay5.jpg" alt="Giày 1"></a>
-      <a href="#" class="tensp">Vintas Vivu</a>
-      <p class="gia">đ299,000</p>
-      <button class="btn-mua">Mua ngay</button>
-    </div>
-    <div class="sp">
-      <a href="#"><img src="giay\giay6.jpg" alt="Giày 1"></a>
-      <a href="#" class="tensp">Vintas Vivu</a>
-      <p class="gia">đ299,000</p>
-      <button class="btn-mua">Mua ngay</button>
-    </div>
+  <div class="content">
+    <h1>Đăng nhập</h1>
+    <?php if (!empty($errors)): ?>
+      <div class="error" role="alert">
+        <?php foreach ($errors as $error): ?>
+          <div><?= htmlspecialchars($error) ?></div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+          <div class="dangnhap">
+    <form method="POST" novalidate autocomplete="off">
+      <label for="username">Tên đăng nhập</label>
+      <input type="text" id="username" name="username" value="<?= htmlspecialchars($username) ?>" required />
+
+      <label for="password">Mật khẩu</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Đăng nhập</button>
+    </form>
+      </div>
   </div>
+
   <footer>
     <div class="ttlh">
       <div class="mxh">
@@ -634,18 +602,10 @@
         <i>here with me..</i>
       </div>
     </div>
-
   </footer>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script>
-    function toggleMenu() {
-      const contents = document.querySelectorAll('.menu-content');
-      contents.forEach(el => el.classList.toggle('show'));
-    }
-  </script>
-
 </body>
 
 </html>

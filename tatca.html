@@ -105,13 +105,31 @@
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
-
-      width: 200px;
+      width: 100%;
       transition: background-color 0.3s;
+      margin-bottom: 5px;
+    }
+
+    .sanpham .btn-them-vao-gio {
+      background-color: #fff;
+      border: 1px solid #a4b5c9;
+      color: #a4b5c9;
+      padding: 10px 0;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s;
     }
 
     .sanpham .btn-mua:hover {
       background-color: #b7154a;
+    }
+
+    .sanpham .btn-them-vao-gio:hover {
+      background-color: #f0f0f0;
+      color: #b7154a;
+      border-color: #b7154a;
     }
 
     .sanpham .sp:hover {
@@ -136,12 +154,9 @@
     }
 
     .thanhcongcu {
-
-
       height: 800px;
       float: left;
       width: 200px;
-
       font-size: 20px;
     }
 
@@ -163,14 +178,12 @@
       display: flex;
       gap: 20px;
       margin-left: auto;
-
     }
 
     .congcutren {
       display: flex;
       gap: 25px;
       font-weight: bold;
-
     }
 
     .congcuduoi {
@@ -191,7 +204,6 @@
       top: 0;
       z-index: 1000;
       background-color: white;
-
     }
 
     li {
@@ -211,7 +223,6 @@
     .danhmuc>li:hover .sub-danhmuc {
       display: block;
       visibility: visible;
-
     }
 
     .danhmuc>li {
@@ -259,7 +270,6 @@
 
     .sub-danhmuc ul {
       padding-left: 5px;
-
     }
 
     .sub-danhmuc ul a {
@@ -344,7 +354,6 @@
         margin-left: auto;
       }
 
-
       .menu-content {
         display: none;
         flex-direction: column;
@@ -354,11 +363,9 @@
         width: 100%;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         /* tạo khối nổi */
-
         z-index: 999;
         /* giúp nổi lên trên ảnh nền */
       }
-
 
       .menu-content.show {
         display: flex;
@@ -423,6 +430,55 @@
         margin-top: 10px;
       }
     }
+    
+    .ttlh {
+      width: 100%;
+      height: 200px;
+      background-color: #637181;
+      /* tăng kích thước icon nếu muốn */
+    }
+
+    .mxh {
+      display: flex;
+      justify-content: center;
+      /* căn giữa theo chiều ngang */
+      gap: 20px;
+      /* khoảng cách giữa các icon */
+      margin-top: 20px;
+      /* cách phần trên */
+      font-size: 40px;
+      padding-top: 50px;
+    }
+
+    .hehe {
+      display: flex;
+      justify-content: center;
+      /* căn giữa theo chiều ngang */
+      gap: 20px;
+      /* khoảng cách giữa các icon */
+      margin-top: 0px;
+      /* cách phần trên */
+      font-size: 20px;
+      font-family: 'Courier New', monospace;
+    }
+    
+    /* Thông báo thêm vào giỏ hàng */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    
+    .toast.show {
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -432,7 +488,7 @@
     <div class="menuphai">
       <a href="#"><ion-icon name="bag-handle-outline"></ion-icon> <span class="text">Theo dõi</span></a>
       <a href="#" class="hide-on-mobile"><ion-icon name="call"></ion-icon> <span class="text">Liên hệ</span></a>
-      <a href="#"><ion-icon name="cart-outline"></ion-icon> <span class="text">Giỏ hàng</span></a>
+      <a href="giohang.html"><ion-icon name="cart-outline"></ion-icon> <span class="text">Giỏ hàng</span></a>
       <a href="#"><ion-icon name="person-outline"></ion-icon> <span class="text">Đăng nhập</span></a>
     </div>
   </div>
@@ -488,7 +544,6 @@
       <li><input type="checkbox" name="price" value="100-200">Từ 100.000đ đến 200.000đ</li>
       <li><input type="checkbox" name="price" value="200-300">Từ 200.000đ đến 300.000đ</li>
       <li><input type="checkbox" name="price" value="300-400">Từ 300.000đ đến 400.000đ</li>
-
     </ul>
     </li>
   </div>
@@ -500,6 +555,7 @@
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
 
     <div class="sp">
@@ -507,75 +563,102 @@
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="quan\quan4.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="quan\quan2.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="giay\giay4.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="giay\giay5.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
     <div class="sp">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
+      <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-
   </div>
+  
+  <div class="ttlh">
+    <div class="mxh">
+      <a href="https://www.facebook.com/nhan.1805/">
+        <ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="https://www.instagram.com/tah_nhan.1805/?hl=vi">
+        <ion-icon name="logo-instagram"></ion-icon></a>
+    </div>
+    <div class="hehe">
+      <i>here with me..</i>
+    </div>
+  </div>
+  
+  <!-- Toast thông báo -->
+  <div class="toast" id="toast">Đã thêm vào giỏ hàng!</div>
+  
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script>
@@ -600,13 +683,64 @@
       });
     });
   </script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script>
     function toggleMenu() {
       const contents = document.querySelectorAll('.menu-content');
       contents.forEach(el => el.classList.toggle('show'));
     }
+    
+    // Xử lý sự kiện thêm vào giỏ hàng
+    document.querySelectorAll('.btn-them-vao-gio').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.btn-them-vao-gio').forEach(button => {
+  button.addEventListener('click', function() {
+    const product = this.closest('.sp');
+    const productInfo = {
+      name: product.querySelector('.tensp').textContent,
+      price: parseInt(product.querySelector('.gia').textContent.replace(/[^\d]/g, '')),
+      image: product.querySelector('img').src,
+      quantity: 1
+    };
+
+    // Lấy giỏ hàng hiện tại từ localStorage
+    let cart = JSON.parse(localStorage.getItem('nhanStoreCart')) || [];
+    
+    // Kiểm tra nếu sản phẩm đã có trong giỏ thì tăng số lượng
+    const existingItem = cart.find(item => item.name === productInfo.name);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push(productInfo);
+    }
+    
+    // Lưu lại vào localStorage
+    localStorage.setItem('nhanStoreCart', JSON.stringify(cart));
+    
+    // Hiển thị thông báo
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  });
+});
+        // Lấy thông tin sản phẩm
+        const product = this.closest('.sp');  
+        const productName = product.querySelector('.tensp').textContent;
+        const productPrice = product.querySelector('.gia').textContent;
+        
+        // Hiển thị thông báo
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        
+        // Ẩn thông báo sau 3 giây
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+        
+        // Ở đây bạn có thể thêm code để lưu sản phẩm vào giỏ hàng
+        // Ví dụ: thêm vào localStorage hoặc gửi AJAX request đến server
+        console.log(`Đã thêm sản phẩm: ${productName} - ${productPrice} vào giỏ hàng`);
+      });
+    });
   </script>
 
 </body>
