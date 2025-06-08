@@ -205,6 +205,7 @@
         top: 0;
         z-index: 1000;
       background-color: white;
+      
 
       }
 
@@ -342,34 +343,51 @@
     width: 90%;
     margin-top: 10px;
   }
+  .content {
+    padding: 20px;
+    width: 95%;
+  }
+  
 }
 
 .content {
-      width: 100%;
-      max-width: 600px;
-      margin: 40px auto;
-      height: 500px;
-      padding: 20px;
-      background: #f9f9f9;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-light);
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
+  width: 90%;              /* Chiếm 90% chiều rộng màn hình */
+  max-width: 600px;        /* Giới hạn chiều rộng tối đa */
+  margin: 40px auto;       /* Căn giữa và cách lề trên/dưới */
+  min-height: 400px;       /* Chiều cao tối thiểu */
+  padding: 5vw;            /* Padding theo tỉ lệ màn hình */
+  background: #f9f9f9;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
     button.option-btn {
         background-color: #b7154a;
       color: white;
       padding: 18px;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 700;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s, box-shadow 0.3s;
-      width: 100%;
-     
+      width: 250px;
+      display: flex;
+      justify-content: center; /* căn giữa theo chiều ngang */
+      
     }
+    .option-buttons {
+  display: flex;
+  justify-content: center;  /* căn giữa theo chiều ngang */
+  align-items: center;      /* căn giữa theo chiều dọc nếu cần */
+  flex-direction: row;      /* đặt nút cạnh nhau theo chiều ngang */
+  gap: 20px;                /* khoảng cách giữa 2 nút */
+  padding: 40px 0;          /* giảm padding để không bị lệch nhiều */
+}
+
   button.option-btn:hover {
       background-color: #a40e3a;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);

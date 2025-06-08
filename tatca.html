@@ -33,6 +33,46 @@
         font-size: 0;
         /* loại bỏ khoảng trắng giữa icon và chữ */
       }
+       .thanhcongcu {
+    display: none;
+  }
+ .sanpham {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép sản phẩm xuống hàng */
+  justify-content: center; /* Căn giữa sản phẩm */
+  padding: 20px;
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+}
+.sanpham .sp {
+  flex: 0 0 calc(50% - 20px); /* Mỗi sản phẩm chiếm 50% chiều rộng trừ khoảng cách */
+  max-width: calc(50% - 20px); /* Giới hạn chiều rộng tối đa */
+  padding: 10px;
+  box-sizing: border-box; /* Để padding và border tính trong kích thước */
+  transition: transform 0.2s; /* Hiệu ứng khi hover */
+}
+.sanpham .sp img {
+  width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ không gian */
+  height: auto; /* Giữ tỷ lệ hình ảnh */
+}
+
+
+      .sanpham .btn-mua {
+        padding: 8px 0;
+        font-size: 14px;
+      }
+
+      .sanpham .gia {
+        font-size: 14px;
+      }
+
+      .sanpham a.tensp {
+        font-size: 14px;
+      }
+
+      .sanpham .sp:hover {
+        transform: none !important;
+        box-shadow: none !important;
+      }
     }
 
     .menu {
@@ -59,7 +99,7 @@
       width: auto;
       display: flex;
       justify-content: left;
-
+       min-height: 800px;
       padding: 20px;
       flex-wrap: wrap;
       gap: 50px;
@@ -72,13 +112,12 @@
       padding: 10px;
       border-radius: 8px;
       /* Thay width cứng bằng max-width và flex-basis */
-      flex: 1 1 250px;
-      /* 1 = grow, 1 = shrink, 250px = basis */
-      max-width: 300px;
-      /* giới hạn kích thước tối đa */
+     flex: 0 0 calc(20% - 50px); /* 5 sản phẩm mỗi hàng, trừ khoảng cách */
+     max-width: calc(20% - 50px);
       transition: 0.2s;
       box-sizing: border-box;
       /* để padding và border tính trong kích thước */
+      
     }
 
     .sanpham a.tensp {
@@ -154,25 +193,63 @@
     }
 
     .thanhcongcu {
-      height: 800px;
-      float: left;
-      width: 200px;
-      font-size: 20px;
+      width: 100%;
+    max-width: 300px;
+    padding: 20px;
+
+    border-radius: 10px;
+ 
+    font-family: Arial, sans-serif;
+     float: left;
     }
 
     .thanhcongcu a {
       text-decoration: none;
       color: black;
+      
     }
+.sub-thanhcongcu {
+  margin-bottom: 30px;
+} 
+.sub-thanhcongcu li {
+  font-weight: bold;
+}
+    .sub-thanhcongcu .title {
+  font-weight: bold;
+  font-size: 18px;
+  color: #b7154a;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
 
-    .sub-thanhcongcu li {
-      font-weight: bold;
-      padding-top: 5px;
-    }
+.sub-thanhcongcu ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+ 
+}
 
-    .thanhcongcu a:hover {
-      color: red;
-    }
+.sub-thanhcongcu ul li {
+  margin: 8px 0;
+  font-size: 15px;
+  
+}
+
+.sub-thanhcongcu ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.sub-thanhcongcu ul li a:hover {
+  color: #007BFF;
+}
+
+.sub-thanhcongcu input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
 
     .menuphai {
       display: flex;
@@ -355,20 +432,17 @@
       }
 
       .menu-content {
-        display: none;
-        flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.95);
-        /* nền đục nhẹ */
-        padding: 10px;
-        width: 100%;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        /* tạo khối nổi */
-        z-index: 999;
-        /* giúp nổi lên trên ảnh nền */
-      }
+    display: none !important; /* luôn ẩn ban đầu trên mobile */
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+  }
 
-      .menu-content.show {
-        display: flex;
+  .menu-content.show {
+    display: flex !important; /* chỉ hiện khi có class show */
       }
 
       .center {
@@ -488,7 +562,7 @@
     <div class="menuphai">
       <a href="#"><ion-icon name="bag-handle-outline"></ion-icon> <span class="text">Theo dõi</span></a>
       <a href="#" class="hide-on-mobile"><ion-icon name="call"></ion-icon> <span class="text">Liên hệ</span></a>
-      <a href="giohang.html"><ion-icon name="cart-outline"></ion-icon> <span class="text">Giỏ hàng</span></a>
+      <a href="giohang-1.html"><ion-icon name="cart-outline"></ion-icon> <span class="text">Giỏ hàng</span></a>
       <a href="#"><ion-icon name="person-outline"></ion-icon> <span class="text">Đăng nhập</span></a>
     </div>
   </div>
@@ -550,7 +624,7 @@
 
   <div class="sanpham">
     <img src="D:\File học\Rèn Nghề Web\linh tinh\sale1.png" alt="" width="100%" height="100%">
-    <div class="sp" data-price="299000">
+    <div class="sp" data-id="ao1" data-price="299000" >
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
@@ -558,84 +632,84 @@
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
 
-    <div class="sp">
+    <div class="sp" data-id="a02" data-price="299000">
       <a href="#"><img src="ao\ao3.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="3">
       <a href="#"><img src="quan\quan4.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="4">
       <a href="#"><img src="quan\quan2.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="5">
       <a href="#"><img src="giay\giay4.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="6">
       <a href="#"><img src="giay\giay5.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="7">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="8">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="9">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="10">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="11">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="12">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
       <button class="btn-mua">Mua ngay</button>
       <button class="btn-them-vao-gio">Thêm vào giỏ</button>
     </div>
-    <div class="sp">
+    <div class="sp" data-id="13">
       <a href="#"><img src="ao\ao1.jpg" alt="Giày 1"></a>
       <a href="#" class="tensp">Vintas Vivu</a>
       <p class="gia">đ299,000</p>
@@ -688,59 +762,43 @@
       const contents = document.querySelectorAll('.menu-content');
       contents.forEach(el => el.classList.toggle('show'));
     }
-    
+    </script>
+    <script>
     // Xử lý sự kiện thêm vào giỏ hàng
-    document.querySelectorAll('.btn-them-vao-gio').forEach(button => {
-      button.addEventListener('click', function() {
-        document.querySelectorAll('.btn-them-vao-gio').forEach(button => {
+    
+ document.querySelectorAll('.btn-them-vao-gio').forEach(button => {
   button.addEventListener('click', function() {
     const product = this.closest('.sp');
+    if (!product) return;
+
     const productInfo = {
-      name: product.querySelector('.tensp').textContent,
+      id: product.getAttribute('data-id'), 
+      name: product.querySelector('.tensp').textContent.trim(),
       price: parseInt(product.querySelector('.gia').textContent.replace(/[^\d]/g, '')),
       image: product.querySelector('img').src,
       quantity: 1
     };
 
-    // Lấy giỏ hàng hiện tại từ localStorage
     let cart = JSON.parse(localStorage.getItem('nhanStoreCart')) || [];
-    
-    // Kiểm tra nếu sản phẩm đã có trong giỏ thì tăng số lượng
-    const existingItem = cart.find(item => item.name === productInfo.name);
+
+    const existingItem = cart.find(item => item.id === productInfo.id);
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
       cart.push(productInfo);
     }
-    
-    // Lưu lại vào localStorage
+
     localStorage.setItem('nhanStoreCart', JSON.stringify(cart));
-    
+
     // Hiển thị thông báo
     const toast = document.getElementById('toast');
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3000);
+
+    console.log(`Đã thêm sản phẩm: ${productInfo.name} - đ${productInfo.price.toLocaleString()} vào giỏ hàng`);
   });
 });
-        // Lấy thông tin sản phẩm
-        const product = this.closest('.sp');  
-        const productName = product.querySelector('.tensp').textContent;
-        const productPrice = product.querySelector('.gia').textContent;
-        
-        // Hiển thị thông báo
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        
-        // Ẩn thông báo sau 3 giây
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 3000);
-        
-        // Ở đây bạn có thể thêm code để lưu sản phẩm vào giỏ hàng
-        // Ví dụ: thêm vào localStorage hoặc gửi AJAX request đến server
-        console.log(`Đã thêm sản phẩm: ${productName} - ${productPrice} vào giỏ hàng`);
-      });
-    });
+
   </script>
 
 </body>

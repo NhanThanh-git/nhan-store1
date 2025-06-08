@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giỏ Hàng - Nhàn Store</title>
+  <title>Cửa hàng trực tuyến</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
+    
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5;
     }
-
 
     @media (max-width: 768px) {
       .hide-on-mobile {
@@ -59,8 +59,7 @@
       text-decoration: underline;
     }
 
-    
-
+   
     .menuphai {
       display: flex;
       gap: 20px;
@@ -185,17 +184,7 @@
       background-color: #ece7e7;
     }
 
-    .support {
-      display: flex;
-      flex-wrap: wrap;
-      /* Cho phép tự động xuống hàng khi không đủ chỗ */
-      justify-content: space-around;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-      gap: 20px;
-      /* khoảng cách giữa các ô */
-    }
+    
     .menu-toggle {
       display: none;
       font-size: 24px;
@@ -205,7 +194,7 @@
       cursor: pointer;
     }
 
-   @media (max-width: 1024px) {
+    @media (max-width: 1024px) {
       .center {
         flex-direction: row;
         justify-content: space-between;
@@ -216,6 +205,7 @@
         top: 0;
         z-index: 1000;
       background-color: white;
+      
 
       }
 
@@ -283,28 +273,7 @@
       .others {
         width: 100%;
       }
-    
-
-      .center {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 0px;
-      }
-
-      .tenshop {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        font-size: 20px;
-        z-index: 1;
-      }
-
-      .others {
-        width: 100%;
-      }
     }
-
 
     .ttlh {
       width: 100%;
@@ -374,74 +343,10 @@
     width: 90%;
     margin-top: 10px;
   }
-}
 
   
-@media (max-width: 768px) {
-  .search-box {
-    width: 90%;
-    margin-top: 10px;
-  }
 }
-    .menu {
-      background-color: #222;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 13px;
-    }
-
-    .menu a:hover {
-      text-decoration: underline;
-    }
-
-    .center {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 50px;
-      height: 100%;
-      max-height: 70px;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .danhmuc {
-      flex: 2;
-      display: flex;
-    }
-
-    .danhmuccon {
-      position: relative;
-      display: inline-block;
-    }
-
-    .tenshop {
-      flex: 1;
-      font-weight: bold;
-      font-size: 22px;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: #333;
-      cursor: pointer;
-    }
-
-    /* Phần giỏ hàng */
+  /* Phần giỏ hàng */
     .giohang-container {
       max-width: 1200px;
       margin: 30px auto;
@@ -640,15 +545,16 @@
       }
 
       .cart-total {
-        width: 100%;
+        width: 90%;
         margin-top: 20px;
       }
     }
+
+
   </style>
 </head>
 
 <body>
-
   <div class="menu">
     <div class="menuphai">
       <a href="#"><ion-icon name="bag-handle-outline"></ion-icon> <span class="text">Theo dõi</span></a>
@@ -657,30 +563,33 @@
       <a href="#"><ion-icon name="person-outline"></ion-icon> <span class="text">Đăng nhập</span></a>
     </div>
   </div>
+
   <div class="center">
     <div class="tenshop">
       <a href="index.html">NHÀN STORE</a>
     </div>
+
     <div class="btmenu">
+      <!-- Nút menu thu gọn -->
       <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
     </div>
+    <!-- Menu ẩn/hiện -->
     <div class="danhmuc menu-content">
       <li><a href="tatca.html" class="danhmuccon"> SẢN PHẨM <ion-icon name="chevron-down-outline"></ion-icon></a>
-    
-    <div class="sub-danhmuc">
+        <div class="sub-danhmuc">
           <ul>
             <li> <a href="Nam.html">Giày</a></li>
             <li> <a href="ao.html">Áo</a></li>
             <li> <a href="quan.html">Quần</a></li>
           </ul>
         </div>
-        </li>
-
+      </li>
       <li><a href="hot.html" class="danhmuccon">HOT</a></li>
       <li><a href="treEm.html" class="danhmuccon">TRẺ EM</a></li>
       <li><a href="thethao.html" class="danhmuccon">THỂ THAO</a></li>
       <li><a href="sale.html" class="danhmuccon">SALE</a></li>
     </div>
+
     <div class="others menu-content">
       <ul>
         <li class="search-box">
@@ -688,11 +597,33 @@
           <i class="fas fa-search"></i>
         </li>
       </ul>
+    </div>
   </div>
-  </div>
-<div class="thanhngang">
+
+  <div class="thanhngang">
 
   </div>
+  
+  <script>
+    function onSignInAdmin() {
+      // Ví dụ redirect đến form đăng nhập quản trị (nếu có)
+      window.location.href = 'admin-login.php';
+   
+    }
+    function onSignInUser() {
+      // Ví dụ redirect đến form đăng nhập người dùng
+      window.location.href = 'user-login.html';
+    }
+  </script>
+  </div>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    function toggleMenu() {
+      const contents = document.querySelectorAll('.menu-content');
+      contents.forEach(el => el.classList.toggle('show'));
+    }
+  </script>
   <div class="giohang-container">
     <h1 class="giohang-title">GIỎ HÀNG CỦA BẠN</h1>
     
@@ -763,13 +694,6 @@
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script>
-    // Hàm toggle menu cho mobile
-    function toggleMenu() {
-      const contents = document.querySelectorAll('.menu-content');
-      contents.forEach(el => el.classList.toggle('show'));
-    }
- </script>
   <script>
     // Lấy giỏ hàng từ localStorage
     function getCart() {
@@ -889,6 +813,5 @@
       document.querySelector('.checkout-btn').addEventListener('click', checkout);
     });
   </script>
-</body>
-
-</html>
+  </body>
+  </html>
